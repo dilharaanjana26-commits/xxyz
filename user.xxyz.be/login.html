@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from user.xxyz.be/login.php by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 31 Jan 2026 22:14:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Secure Login | Access Your Dashboard</title>
+    <link rel="stylesheet" href="assets/css/app.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        :root { --primary: #5a67d8; --gradient: linear-gradient(135deg, #5a67d8 0%, #7c3aed 50%, #ec4899 100%); --dark-bg: #0f172a; --card-bg: rgba(255, 255, 255, 0.98); }
+        body { background: var(--dark-bg); min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow-x: hidden; color: #1e293b; }
+        
+        .gradient-mesh { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: radial-gradient(circle at 20% 30%, rgba(90, 103, 216, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%); animation: gradient-shift 15s ease-in-out infinite alternate; }
+        @keyframes gradient-shift { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
+        
+        .particles-container { position: fixed; width: 100%; height: 100%; z-index: -1; }
+        .particle { position: absolute; background: var(--gradient); border-radius: 50%; filter: blur(1px); animation: float-particle 20s infinite linear; }
+        @keyframes float-particle { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.5; } 100% { transform: translateY(-100px) rotate(360deg); opacity: 0; } }
+        
+        /* CONTAINER FIX: Increased max-width to match original dashboard login */
+        .auth-container { width: 100%; max-width: 520px; margin: 20px; position: relative; }
+        
+        .auth-card { background: var(--card-bg); border-radius: 24px; padding: 50px 45px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); position: relative; width: 100%; transition: all 0.4s; }
+        .auth-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--gradient); border-radius: 24px 24px 0 0; }
+        
+        .logo-icon { width: 80px; height: 80px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; color: white; font-size: 35px; box-shadow: 0 12px 32px rgba(90, 103, 216, 0.3); }
+        
+        .form-control { background: #f8fafc; border: 2px solid #e2e8f0; height: 60px; border-radius: 12px; padding-left: 55px !important; font-size: 16px; }
+        .input-container { position: relative; margin-bottom: 25px; }
+        .input-icon { position: absolute; left: 20px; top: 20px; color: #94a3b8; font-size: 20px; z-index: 10; }
+        
+        .submit-btn { background: var(--gradient); color: white; border: none; width: 100%; padding: 18px; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.3s; letter-spacing: 0.5px; }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(90, 103, 216, 0.3); }
+        
+        .forgot-link { color: var(--primary); text-decoration: none; font-weight: 600; cursor: pointer; }
+        #forgot-section { display: none; }
+        
+        @media (max-width: 576px) {
+            .auth-card { padding: 40px 25px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gradient-mesh"></div>
+    <div class="particles-container" id="particles"></div>
+    
+    <div class="auth-container animate__animated animate__fadeIn">
+        <div class="auth-card">
+            
+            
+            <div id="login-section">
+                <div class="text-center mb-4">
+                    <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h1 style="font-size: 32px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; color: transparent; margin-bottom: 10px;">Welcome Back</h1>
+                    <p class="text-muted">Sign in to your secure dashboard</p>
+                </div>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label class="font-weight-bold small">Username</label>
+                        <div class="input-container">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" id="username" class="form-control" placeholder="Enter username" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold small">Password</label>
+                        <div class="input-container">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="password" class="form-control" placeholder="Enter password" required>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <label class="mb-0 small" style="cursor: pointer;"><input type="checkbox" id="remember"> Remember Me</label>
+                        <span class="forgot-link small" onclick="toggleView('forgot')">Forgot Password?</span>
+                    </div>
+                    <button type="submit" class="submit-btn" id="loginBtn">Sign In <i class="fas fa-arrow-right ml-2"></i></button>
+                </form>
+            </div>
+
+            <div id="forgot-section">
+                <div class="text-center mb-4">
+                    <div class="logo-icon" style="background: #ef4444;"><i class="fas fa-key"></i></div>
+                    <h1 style="font-size: 28px; font-weight: 800; color: #333;">Reset Password</h1>
+                    <p class="text-muted">Get a new random password via Email</p>
+                </div>
+                <form method="POST">
+                    <div class="form-group">
+                        <label class="font-weight-bold small">Registered Email ID</label>
+                        <div class="input-container">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" name="email" class="form-control" placeholder="email@example.com" required>
+                        </div>
+                    </div>
+                    <div class="alert alert-info py-2 small border-0 mb-4" style="background: #ebf8ff; color: #2b6cb0;">
+                        <i class="fas fa-info-circle mr-1"></i> New credentials will be sent to your Email & WhatsApp.
+                    </div>
+                    <button type="submit" name="forget_password_submit" class="submit-btn" style="background: #ef4444;">Send New Password</button>
+                    <div class="text-center mt-4">
+                        <span class="forgot-link small" onclick="toggleView('login')"><i class="fas fa-chevron-left mr-1"></i> Back to Login</span>
+                    </div>
+                </form>
+            </div>
+
+            <div class="text-center mt-4 pt-4 border-top">
+                <p class="text-muted mb-0">Don't have an account? <a href="signup.html" style="color: var(--primary); font-weight: 700; text-decoration: none;">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function toggleView(v) { if(v==='forgot'){ $('#login-section').hide(); $('#forgot-section').fadeIn(); } else { $('#forgot-section').hide(); $('#login-section').fadeIn(); } }
+
+        $('#login-form').on('submit', function(e) {
+            e.preventDefault();
+            $('#loginBtn').prop('disabled', true).html('<i class="fas fa-circle-notch fa-spin"></i> Checking...');
+            $.ajax({
+                url: 'function/check-login.php',
+                type: 'POST',
+                data: { username: $('#username').val(), password: $('#password').val(), remember: $('#remember').is(':checked') ? 1 : 0 },
+                success: function(r) {
+                    if(r.trim() === 'success') { window.location.href = 'index-2.html'; }
+                    else { 
+                        Swal.fire('Login Failed', 'Invalid username or password.', 'error'); 
+                        $('#loginBtn').prop('disabled', false).html('Sign In <i class="fas fa-arrow-right ml-2"></i>'); 
+                    }
+                }
+            });
+        });
+
+        const container = document.getElementById('particles');
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 40 + 10;
+            p.style.width = size + 'px'; p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 10 + 's';
+            p.style.animationDuration = Math.random() * 15 + 10 + 's';
+            container.appendChild(p);
+        }
+    </script>
+</body>
+
+<!-- Mirrored from user.xxyz.be/login.php by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 31 Jan 2026 22:14:28 GMT -->
+</html>
