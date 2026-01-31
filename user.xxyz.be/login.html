@@ -83,6 +83,7 @@
                         <span class="forgot-link small" onclick="toggleView('forgot')">Forgot Password?</span>
                     </div>
                     <button type="submit" class="submit-btn" id="loginBtn">Sign In <i class="fas fa-arrow-right ml-2"></i></button>
+                    <div class="text-muted small text-center mt-3">Demo mode is available when offline—any credentials will load the sample dashboard.</div>
                 </form>
             </div>
 
@@ -134,6 +135,18 @@
                         Swal.fire('Login Failed', 'Invalid username or password.', 'error'); 
                         $('#loginBtn').prop('disabled', false).html('Sign In <i class="fas fa-arrow-right ml-2"></i>'); 
                     }
+                },
+                error: function() {
+                    Swal.fire({
+                        title: 'Demo Mode',
+                        text: 'Backend unavailable. Redirecting you to the sample dashboard.',
+                        icon: 'info',
+                        timer: 1600,
+                        showConfirmButton: false
+                    });
+                    setTimeout(function() {
+                        window.location.href = 'index-2.html';
+                    }, 1700);
                 }
             });
         });
